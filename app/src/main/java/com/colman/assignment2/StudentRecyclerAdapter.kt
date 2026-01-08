@@ -11,7 +11,7 @@ import com.colman.assignment2.model.Student
 class StudentRecyclerAdapter(private val students: MutableList<Student>) :
     RecyclerView.Adapter<StudentRecyclerAdapter.StudentViewHolder>() {
 
-    // This allows StudentsListActivity to listen for row clicks [cite: 17]
+    // This allows StudentsListActivity to listen for row clicks
     var onItemClick: ((Student) -> Unit)? = null
 
     // This class holds the views for a single row
@@ -34,7 +34,7 @@ class StudentRecyclerAdapter(private val students: MutableList<Student>) :
         holder.nameTv.text = student.name
         holder.idTv.text = student.id
 
-        // Handle the checkbox status [cite: 16]
+        // Handle the checkbox status
         holder.checkBox.apply {
             isChecked = student.isChecked
             // We use setOnClickListener instead of onCheckedChangeListener
@@ -44,7 +44,7 @@ class StudentRecyclerAdapter(private val students: MutableList<Student>) :
             }
         }
 
-        // Handle clicking the whole row to open details [cite: 17]
+        // Handle clicking the whole row to open details
         holder.itemView.setOnClickListener {
             onItemClick?.invoke(student)
         }

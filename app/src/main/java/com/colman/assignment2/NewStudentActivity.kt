@@ -25,7 +25,6 @@ class NewStudentActivity : AppCompatActivity() {
             val phone = phoneEt.text.toString()
             val address = addressEt.text.toString()
 
-            // Validations (per your previous request)
             if (name.isEmpty() || phone.isEmpty() || address.isEmpty()) {
                 Toast.makeText(this, "Please fill all fields", Toast.LENGTH_SHORT).show()
                 return@setOnClickListener
@@ -33,6 +32,7 @@ class NewStudentActivity : AppCompatActivity() {
 
             if (!phone.all { it.isDigit() }) {
                 phoneEt.error = "Numbers only, please"
+                phoneEt.requestFocus()
                 return@setOnClickListener
             }
 

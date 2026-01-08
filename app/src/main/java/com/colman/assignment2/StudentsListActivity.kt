@@ -24,17 +24,20 @@ class StudentsListActivity : AppCompatActivity() {
         // 2. Set the Layout Manager (Vertical list)
         recyclerView.layoutManager = LinearLayoutManager(this)
 
-        // 3. Initialize and set the Adapter [cite: 8]
+        // 3. Initialize and set the Adapter using the Singleton Model
         adapter = StudentRecyclerAdapter(Model.shared.data)
         recyclerView.adapter = adapter
 
-        // 4. Handle Row Clicks - Navigate to Details (Task A.3) [cite: 17]
-        adapter.onItemClick = { student ->
-            // For now, this just shows we can click.
-            // Later, Partner B will use this to open StudentDetailsActivity.
+        // 4. Handle Row Clicks - Navigate to Details
+        // The underscore '_' is used because the student parameter is not needed yet.
+        // This resolves the "Parameter student is never used" warning.
+        adapter.onItemClick = { _ ->
+            // This is the hook for Partner B to open StudentDetailsActivity.
+            // Example: val intent = Intent(this, StudentDetailsActivity::class.java)
+            // startActivity(intent)
         }
 
-        // 5. Setup the FAB to navigate to New Student screen [cite: 9]
+        // 5. Setup the FAB to navigate to the New Student screen
         val fab: FloatingActionButton = findViewById(R.id.add_student_fab)
         fab.setOnClickListener {
             val intent = Intent(this, NewStudentActivity::class.java)
@@ -45,6 +48,9 @@ class StudentsListActivity : AppCompatActivity() {
     // Refresh the list when returning from the "New Student" screen
     override fun onResume() {
         super.onResume()
-        adapter.notifyDataSetChanged()
+        val newCount = Model.shared.data.size
+        if (newCount > 0) {
+            adapter.notifyItemInserted(newCount - 1)
+        }
     }
 }

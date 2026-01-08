@@ -1,3 +1,15 @@
 <resources>
     <string name="app_name">Assignment2</string>
+    <string name="student_name_placeholder">Student Name</string>
+    <string name="student_id_placeholder">Student ID</string>
+    <string name="student_profile_picture_description">Student Profile Picture</string>
+    <string name="add_student_button_description">Add new student</string>
+
+    <string name="hint_name">Name</string>
+    <string name="hint_phone">Phone</string>
+    <string name="hint_address">Address</string>
+    <string name="btn_save">Save</string>
+    <string name="btn_cancel">Cancel</string>
+    <string name="validation_error_fields">All fields are required</string>
+    <string name="validation_error_phone">Numbers only, please</string>
 </resources>
