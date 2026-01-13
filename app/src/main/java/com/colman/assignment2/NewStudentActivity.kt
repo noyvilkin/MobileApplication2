@@ -15,6 +15,7 @@ class NewStudentActivity : AppCompatActivity() {
         setContentView(R.layout.activity_new_student)
 
         val nameEt = findViewById<EditText>(R.id.new_student_name_et)
+        val idEt = findViewById<EditText>(R.id.new_student_id_et)
         val phoneEt = findViewById<EditText>(R.id.new_student_phone_et)
         val addressEt = findViewById<EditText>(R.id.new_student_address_et)
         val saveBtn = findViewById<Button>(R.id.new_student_save_btn)
@@ -22,10 +23,11 @@ class NewStudentActivity : AppCompatActivity() {
 
         saveBtn.setOnClickListener {
             val name = nameEt.text.toString()
+            val id = idEt.text.toString()
             val phone = phoneEt.text.toString()
             val address = addressEt.text.toString()
 
-            if (name.isEmpty() || phone.isEmpty() || address.isEmpty()) {
+            if (name.isEmpty() || id.isEmpty() || phone.isEmpty() || address.isEmpty()) {
                 Toast.makeText(this, "Please fill all fields", Toast.LENGTH_SHORT).show()
                 return@setOnClickListener
             }
@@ -36,18 +38,15 @@ class NewStudentActivity : AppCompatActivity() {
                 return@setOnClickListener
             }
 
-            // Use the new helper function to get a unique, structured ID
-            val autoId = Model.shared.getNextId()
-
             val newStudent = Student(
                 name = name,
-                id = autoId, // This will now be 200000021, then 200000022, etc.
+                id = id, 
                 phone = phone,
                 address = address,
                 isChecked = false
             )
 
-            Model.shared.data.add(newStudent)
+            Model.instance.data.add(newStudent)
             finish()
         }
 
