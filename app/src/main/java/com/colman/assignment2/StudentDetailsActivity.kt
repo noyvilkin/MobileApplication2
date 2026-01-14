@@ -18,6 +18,7 @@ class StudentDetailsActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_student_details)
+        title = "Student Details"
 
         val studentId = intent.getStringExtra("student_id")
         student = Model.instance.getStudentById(studentId)

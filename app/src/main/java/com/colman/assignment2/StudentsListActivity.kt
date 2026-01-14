@@ -16,6 +16,7 @@ class StudentsListActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_students_list)
+        title = "Students List"
 
         // 1. Initialize the RecyclerView
         recyclerView = findViewById(R.id.students_recycler_view)

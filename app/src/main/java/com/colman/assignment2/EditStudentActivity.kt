@@ -16,6 +16,7 @@ class EditStudentActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_edit_student)
+        title = "Edit Student"
 
         originalId = intent.getStringExtra("student_id")
         student = Model.instance.getStudentById(originalId)
@@ -36,11 +37,51 @@ class EditStudentActivity : AppCompatActivity() {
 
         val saveBtn: Button = findViewById(R.id.save_btn)
         saveBtn.setOnClickListener {
+            val name = nameEt.text.toString().trim()
+            val id = idEt.text.toString().trim()
+            val phone = phoneEt.text.toString().trim()
+            val address = addressEt.text.toString().trim()
+
+            if (name.isEmpty()) {
+                nameEt.error = "Name cannot be empty"
+                return@setOnClickListener
+            }
+
+            if (id.isEmpty()) {
+                idEt.error = "ID cannot be empty"
+                return@setOnClickListener
+            }
+
+            if (!id.matches(Regex("\\d+"))) {
+                idEt.error = "ID must contain only numbers"
+                return@setOnClickListener
+            }
+
+            if (originalId != id && Model.instance.getStudentById(id) != null) {
+                idEt.error = "A student with this ID already exists"
+                return@setOnClickListener
+            }
+
+            if (phone.isEmpty()) {
+                phoneEt.error = "Phone cannot be empty"
+                return@setOnClickListener
+            }
+
+            if (!phone.matches(Regex("^05[0-9]{8}$"))) {
+                phoneEt.error = "Invalid phone number"
+                return@setOnClickListener
+            }
+
+            if (address.isEmpty()) {
+                addressEt.error = "Address cannot be empty"
+                return@setOnClickListener
+            }
+
             val newStudent = Student(
-                nameEt.text.toString(),
-                idEt.text.toString(),
-                phoneEt.text.toString(),
-                addressEt.text.toString(),
+                name,
+                id,
+                phone,
+                address,
                 checkedCb.isChecked
             )
             originalId?.let { Model.instance.updateStudent(it, newStudent) }

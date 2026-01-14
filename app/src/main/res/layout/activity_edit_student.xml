@@ -11,25 +11,29 @@
         android:id="@+id/name_et"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:hint="Name" />
+        android:hint="Name"
+        android:inputType="textPersonName" />
 
     <EditText
         android:id="@+id/id_et"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:hint="ID" />
+        android:hint="ID"
+        android:inputType="number" />
 
     <EditText
         android:id="@+id/phone_et"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:hint="Phone" />
+        android:hint="Phone"
+        android:inputType="phone" />
 
     <EditText
         android:id="@+id/address_et"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:hint="Address" />
+        android:hint="Address"
+        android:inputType="textPostalAddress" />
 
     <CheckBox
         android:id="@+id/checked_cb"

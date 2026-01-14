@@ -13,6 +13,7 @@ class NewStudentActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_new_student)
+        title = "New Student"
 
         val nameEt = findViewById<EditText>(R.id.new_student_name_et)
         val idEt = findViewById<EditText>(R.id.new_student_id_et)
