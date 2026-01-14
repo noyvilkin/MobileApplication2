@@ -3,6 +3,7 @@ package com.colman.assignment2
 import android.annotation.SuppressLint
 import android.content.Intent
 import android.os.Bundle
+import android.view.MenuItem
 import android.widget.Button
 import android.widget.CheckBox
 import android.widget.ImageView
@@ -19,6 +20,8 @@ class StudentDetailsActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_student_details)
         title = "Student Details"
+
+        supportActionBar?.setDisplayHomeAsUpEnabled(true)
 
         val studentId = intent.getStringExtra("student_id")
         student = Model.instance.getStudentById(studentId)
@@ -47,5 +50,13 @@ class StudentDetailsActivity : AppCompatActivity() {
             intent.putExtra("student_id", student?.id)
             startActivity(intent)
         }
+    }
+
+    override fun onOptionsItemSelected(item: MenuItem): Boolean {
+        if (item.itemId == android.R.id.home) {
+            finish()
+            return true
+        }
+        return super.onOptionsItemSelected(item)
     }
 }
