@@ -1,6 +1,7 @@
 package com.colman.assignment2
 
 import android.os.Bundle
+import android.view.MenuItem
 import android.widget.Button
 import android.widget.EditText
 import android.widget.Toast
@@ -14,6 +15,8 @@ class NewStudentActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_new_student)
         title = "New Student"
+
+        supportActionBar?.setDisplayHomeAsUpEnabled(true)
 
         val nameEt = findViewById<EditText>(R.id.new_student_name_et)
         val idEt = findViewById<EditText>(R.id.new_student_id_et)
@@ -52,5 +55,13 @@ class NewStudentActivity : AppCompatActivity() {
         }
 
         cancelBtn.setOnClickListener { finish() }
+    }
+
+    override fun onOptionsItemSelected(item: MenuItem): Boolean {
+        if (item.itemId == android.R.id.home) {
+            finish()
+            return true
+        }
+        return super.onOptionsItemSelected(item)
     }
 }

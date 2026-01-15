@@ -2,6 +2,7 @@ package com.colman.assignment2
 
 import android.content.Intent
 import android.os.Bundle
+import android.view.MenuItem
 import android.widget.Button
 import android.widget.CheckBox
 import android.widget.EditText
@@ -17,6 +18,8 @@ class EditStudentActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_edit_student)
         title = "Edit Student"
+
+        supportActionBar?.setDisplayHomeAsUpEnabled(true)
 
         originalId = intent.getStringExtra("student_id")
         student = Model.instance.getStudentById(originalId)
@@ -105,5 +108,13 @@ class EditStudentActivity : AppCompatActivity() {
         intent.flags = Intent.FLAG_ACTIVITY_CLEAR_TOP or Intent.FLAG_ACTIVITY_NEW_TASK
         startActivity(intent)
         finish()
+    }
+
+    override fun onOptionsItemSelected(item: MenuItem): Boolean {
+        if (item.itemId == android.R.id.home) {
+            finish()
+            return true
+        }
+        return super.onOptionsItemSelected(item)
     }
 }
